@@ -1,0 +1,11 @@
+banana
+
+# 测试模块
+let test_var = "Hello from module!"
+
+func test_func()
+    println("This is a test function from module")
+    println("Module variable: " + test_var)
+endfunc
+
+end

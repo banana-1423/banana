@@ -1,0 +1,8 @@
+banana
+
+# Hello World 示例程序
+println("Hello, World!")
+println("欢迎使用 Banana 语言！")
+println("版本: 1.0.0")
+
+end

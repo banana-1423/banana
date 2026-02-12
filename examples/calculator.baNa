@@ -1,0 +1,92 @@
+banana
+
+# 简单计算器示例程序
+
+println("========================================")
+println("      Banana 语言计算器 v1.0.0")
+println("========================================")
+println()
+
+# 定义计算函数
+func add(a, b)
+    return a + b
+endfunc
+
+func subtract(a, b)
+    return a - b
+endfunc
+
+func multiply(a, b)
+    return a * b
+endfunc
+
+func divide(a, b)
+    if b == 0:
+        println("错误：除数不能为零！")
+        return None
+    else:
+        return a / b
+    endif
+endfunc
+
+func power(a, b)
+    return a ^ b
+endfunc
+
+# 主循环
+let running = True
+
+while running:
+    println("请选择操作：")
+    println("1. 加法 (+)")
+    println("2. 减法 (-)")
+    println("3. 乘法 (*)")
+    println("4. 除法 (/)")
+    println("5. 幂运算 (^)")
+    println("0. 退出")
+    println()
+    
+    let choice = input_num("请输入选项 (0-5): ")
+    
+    if choice == 0:
+        running = False
+        println("感谢使用 Banana 计算器！")
+    elif choice >= 1 and choice <= 5:
+        let num1 = input_num("请输入第一个数字: ")
+        let num2 = input_num("请输入第二个数字: ")
+        
+        let result = None
+        let operator = ""
+        
+        if choice == 1:
+            result = add(num1, num2)
+            operator = "+"
+        elif choice == 2:
+            result = subtract(num1, num2)
+            operator = "-"
+        elif choice == 3:
+            result = multiply(num1, num2)
+            operator = "*"
+        elif choice == 4:
+            result = divide(num1, num2)
+            operator = "/"
+        elif choice == 5:
+            result = power(num1, num2)
+            operator = "^"
+        endif
+        
+        if result != None:
+            println()
+            println("计算结果:")
+            println(num1, " ", operator, " ", num2, " = ", result)
+        endif
+        
+        println()
+        input("按 Enter 继续...")
+    else:
+        println("无效的选项，请重新输入！")
+        println()
+    endif
+endwhile
+
+end

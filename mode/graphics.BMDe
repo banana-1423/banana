@@ -1,0 +1,356 @@
+banana
+
+# 图形化计算机库
+# 使用turtle模块作为底层图形库
+
+# 导入turtle模块
+import turtle
+import time
+import random
+
+# 全局变量
+let _window = None
+let _canvas = None
+let _screen = None
+let _pen = None
+let _running = False
+
+# 初始化图形系统
+func init_graphics()
+    if _window == None:
+        # 创建窗口
+        _pen = turtle.Turtle()
+        _screen = turtle.Screen()
+        _screen.title("Banana Graphics")
+        _screen.setup(width=800, height=600)
+        _screen.bgcolor("white")
+        _pen.speed(0)
+        _pen.hideturtle()
+        _window = True
+        println("图形系统初始化成功")
+    else:
+        println("图形系统已经初始化")
+endfunc
+
+# 关闭图形系统
+func close_graphics()
+    if _window != None:
+        _screen.bye()
+        _window = None
+        println("图形系统已关闭")
+    else:
+        println("图形系统未初始化")
+endfunc
+
+# 清屏
+func clear_screen()
+    if _window != None:
+        _pen.clear()
+    else:
+        println("图形系统未初始化")
+endfunc
+
+# 设置背景颜色
+func set_bg_color(color)
+    if _window != None:
+        _screen.bgcolor(color)
+    else:
+        println("图形系统未初始化")
+endfunc
+
+# 设置画笔颜色
+func set_pen_color(color)
+    if _window != None:
+        _pen.pencolor(color)
+    else:
+        println("图形系统未初始化")
+endfunc
+
+# 设置画笔粗细
+func set_pen_size(size)
+    if _window != None:
+        _pen.pensize(size)
+    else:
+        println("图形系统未初始化")
+endfunc
+
+# 移动到指定位置
+func move_to(x, y)
+    if _window != None:
+        _pen.penup()
+        _pen.goto(x, y)
+        _pen.pendown()
+    else:
+        println("图形系统未初始化")
+endfunc
+
+# 绘制线条
+func draw_line(x1, y1, x2, y2)
+    if _window != None:
+        _pen.penup()
+        _pen.goto(x1, y1)
+        _pen.pendown()
+        _pen.goto(x2, y2)
+    else:
+        println("图形系统未初始化")
+endfunc
+
+# 绘制矩形
+func draw_rectangle(x, y, width, height)
+    if _window != None:
+        _pen.penup()
+        _pen.goto(x - width/2, y - height/2)
+        _pen.pendown()
+        for i in 0 to 3:
+            _pen.forward(width)
+            _pen.left(90)
+            if i < 3:
+                _pen.forward(height)
+                _pen.left(90)
+            endif
+        endfor
+    else:
+        println("图形系统未初始化")
+endfunc
+
+# 绘制圆形
+func draw_circle(x, y, radius)
+    if _window != None:
+        _pen.penup()
+        _pen.goto(x, y - radius)
+        _pen.pendown()
+        _pen.circle(radius)
+    else:
+        println("图形系统未初始化")
+endfunc
+
+# 填充矩形
+func fill_rectangle(x, y, width, height, color)
+    if _window != None:
+        _pen.penup()
+        _pen.goto(x - width/2, y - height/2)
+        _pen.pendown()
+        _pen.fillcolor(color)
+        _pen.begin_fill()
+        for i in 0 to 3:
+            _pen.forward(width)
+            _pen.left(90)
+            if i < 3:
+                _pen.forward(height)
+                _pen.left(90)
+            endif
+        endfor
+        _pen.end_fill()
+    else:
+        println("图形系统未初始化")
+endfunc
+
+# 填充圆形
+func fill_circle(x, y, radius, color)
+    if _window != None:
+        _pen.penup()
+        _pen.goto(x, y - radius)
+        _pen.pendown()
+        _pen.fillcolor(color)
+        _pen.begin_fill()
+        _pen.circle(radius)
+        _pen.end_fill()
+    else:
+        println("图形系统未初始化")
+endfunc
+
+# 绘制文本
+func draw_text(x, y, text, size=12, color="black")
+    if _window != None:
+        _pen.penup()
+        _pen.goto(x, y)
+        _pen.pendown()
+        _pen.pencolor(color)
+        _pen.write(text, font=("Arial", size, "normal"), align="center")
+    else:
+        println("图形系统未初始化")
+endfunc
+
+# 绘制点
+func draw_point(x, y, size=2, color="black")
+    if _window != None:
+        _pen.penup()
+        _pen.goto(x, y)
+        _pen.pendown()
+        _pen.pencolor(color)
+        _pen.pensize(size)
+        _pen.dot()
+        _pen.pensize(1)
+    else:
+        println("图形系统未初始化")
+endfunc
+
+# 绘制三角形
+func draw_triangle(x1, y1, x2, y2, x3, y3)
+    if _window != None:
+        _pen.penup()
+        _pen.goto(x1, y1)
+        _pen.pendown()
+        _pen.goto(x2, y2)
+        _pen.goto(x3, y3)
+        _pen.goto(x1, y1)
+    else:
+        println("图形系统未初始化")
+endfunc
+
+# 填充三角形
+func fill_triangle(x1, y1, x2, y2, x3, y3, color)
+    if _window != None:
+        _pen.penup()
+        _pen.goto(x1, y1)
+        _pen.pendown()
+        _pen.fillcolor(color)
+        _pen.begin_fill()
+        _pen.goto(x2, y2)
+        _pen.goto(x3, y3)
+        _pen.goto(x1, y1)
+        _pen.end_fill()
+    else:
+        println("图形系统未初始化")
+endfunc
+
+# 随机颜色
+func random_color()
+    let r = random.randint(0, 255)
+    let g = random.randint(0, 255)
+    let b = random.randint(0, 255)
+    return (r/255, g/255, b/255)
+endfunc
+
+# 延迟
+func delay(seconds)
+    time.sleep(seconds)
+endfunc
+
+# 开始事件循环
+func start_event_loop()
+    if _window != None:
+        _running = True
+        println("事件循环开始，按Ctrl+C退出")
+        try:
+            _screen.mainloop()
+        except:
+            _running = False
+            println("事件循环结束")
+    else:
+        println("图形系统未初始化")
+endfunc
+
+# 停止事件循环
+func stop_event_loop()
+    if _window != None and _running:
+        _screen.bye()
+        _running = False
+        println("事件循环已停止")
+    else:
+        println("事件循环未运行")
+endfunc
+
+# 绘制网格
+func draw_grid(size=50, color="lightgray")
+    if _window != None:
+        _pen.pencolor(color)
+        _pen.pensize(1)
+        
+        # 绘制垂直线
+        for x in -400 to 400 step size:
+            move_to(x, -300)
+            _pen.pendown()
+            _pen.goto(x, 300)
+            _pen.penup()
+        endfor
+        
+        # 绘制水平线
+        for y in -300 to 300 step size:
+            move_to(-400, y)
+            _pen.pendown()
+            _pen.goto(400, y)
+            _pen.penup()
+        endfor
+        
+        _pen.pensize(1)
+    else:
+        println("图形系统未初始化")
+endfunc
+
+# 绘制坐标轴
+func draw_coordinates()
+    if _window != None:
+        # 绘制x轴
+        set_pen_color("black")
+        set_pen_size(2)
+        draw_line(-400, 0, 400, 0)
+        draw_text(390, -20, "X")
+        
+        # 绘制y轴
+        draw_line(0, -300, 0, 300)
+        draw_text(20, 290, "Y")
+        
+        # 绘制刻度
+        set_pen_size(1)
+        set_pen_color("gray")
+        for i in -400 to 400 step 50:
+            if i != 0:
+                draw_line(i, -5, i, 5)
+                draw_text(i, -20, str(i))
+            endif
+        endfor
+        
+        for i in -300 to 300 step 50:
+            if i != 0:
+                draw_line(-5, i, 5, i)
+                draw_text(-20, i, str(i))
+            endif
+        endfor
+        
+        set_pen_size(1)
+        set_pen_color("black")
+    else:
+        println("图形系统未初始化")
+endfunc
+
+# 测试函数
+func test_graphics()
+    init_graphics()
+    
+    # 绘制网格和坐标轴
+    draw_grid(50)
+    draw_coordinates()
+    
+    # 绘制一些图形
+    set_pen_color("red")
+    set_pen_size(2)
+    draw_rectangle(-200, 200, 100, 100)
+    
+    set_pen_color("blue")
+    draw_circle(200, 200, 50)
+    
+    set_pen_color("green")
+    draw_triangle(-200, -200, -100, -200, -150, -100)
+    
+    # 填充图形
+    fill_rectangle(0, -200, 100, 100, "yellow")
+    fill_circle(200, -200, 50, "purple")
+    fill_triangle(100, 200, 200, 200, 150, 100, "orange")
+    
+    # 绘制文本
+    draw_text(0, 0, "Banana Graphics", 24, "black")
+    draw_text(0, -50, "Hello, World!", 16, "gray")
+    
+    # 绘制一些点
+    set_pen_color("black")
+    for i in 1 to 50:
+        draw_point(random.randint(-390, 390), random.randint(-290, 290), 3, random_color())
+    endfor
+    
+    println("测试完成，按窗口关闭按钮退出")
+    start_event_loop()
+    close_graphics()
+endfunc
+
+end

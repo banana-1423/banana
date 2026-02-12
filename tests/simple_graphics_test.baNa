@@ -1,0 +1,40 @@
+banana
+
+# 简单图形测试
+import graphics
+
+# 初始化图形系统
+println("初始化图形系统...")
+init_graphics()
+
+# 绘制基本图形
+println("绘制基本图形...")
+
+# 绘制矩形
+draw_rectangle(-200, 200, 100, 100)
+
+# 绘制圆形
+draw_circle(200, 200, 50)
+
+# 绘制三角形
+draw_triangle(-200, -200, -100, -200, -150, -100)
+
+# 填充图形
+fill_rectangle(0, -200, 100, 100, "yellow")
+fill_circle(200, -200, 50, "purple")
+fill_triangle(100, 200, 200, 200, 150, 100, "orange")
+
+# 绘制文本
+draw_text(0, 0, "Banana Graphics", 24, "black")
+draw_text(0, -50, "Hello, World!", 16, "gray")
+
+# 等待用户输入
+println("按任意键退出...")
+input("Press Enter to exit")
+
+# 关闭图形系统
+close_graphics()
+
+println("图形测试完成！")
+
+end

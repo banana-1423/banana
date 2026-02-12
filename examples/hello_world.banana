@@ -1,0 +1,7 @@
+banana
+# 简单的Hello World程序
+println("Hello, Banana World!")
+
+# 打印当前时间
+println("当前时间: " + str(datetime.now()))
+end

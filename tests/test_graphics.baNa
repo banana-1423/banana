@@ -1,0 +1,113 @@
+banana
+
+# 测试图形化计算机库
+import graphics
+
+# 初始化图形系统
+println("初始化图形系统...")
+init_graphics()
+
+# 测试基本绘制功能
+println("测试基本绘制功能...")
+
+# 绘制网格和坐标轴
+draw_grid(50)
+draw_coordinates()
+
+# 绘制矩形
+set_pen_color("red")
+set_pen_size(2)
+draw_rectangle(-200, 200, 100, 100)
+
+# 绘制圆形
+set_pen_color("blue")
+draw_circle(200, 200, 50)
+
+# 绘制三角形
+set_pen_color("green")
+draw_triangle(-200, -200, -100, -200, -150, -100)
+
+# 填充图形
+fill_rectangle(0, -200, 100, 100, "yellow")
+fill_circle(200, -200, 50, "purple")
+fill_triangle(100, 200, 200, 200, 150, 100, "orange")
+
+# 绘制文本
+draw_text(0, 0, "Banana Graphics", 24, "black")
+draw_text(0, -50, "Hello, World!", 16, "gray")
+draw_text(0, -80, "This is a test of the graphics library", 12, "gray")
+
+# 绘制随机点
+println("绘制随机点...")
+for i in 1 to 100:
+    draw_point(random.randint(-390, 390), random.randint(-290, 290), 3, random_color())
+endfor
+
+# 测试动画效果
+println("测试动画效果...")
+let x = -300
+let y = 0
+let direction = 1
+
+for i in 1 to 200:
+    clear_screen()
+    draw_grid(50)
+    draw_coordinates()
+    
+    # 移动小球
+    x = x + direction * 5
+    if x > 300 or x < -300:
+        direction = direction * -1
+    endif
+    
+    # 绘制彩色小球
+    fill_circle(x, y, 30, random_color())
+    draw_text(0, 250, "Animation Test: Moving Ball", 16, "black")
+    draw_text(0, 220, "X: " + str(x) + ", Y: " + str(y), 12, "gray")
+    
+    delay(0.05)
+endfor
+
+# 测试复杂图形
+println("测试复杂图形...")
+clear_screen()
+draw_grid(50)
+draw_coordinates()
+
+# 绘制多边形
+func draw_polygon(x, y, sides, radius, color)
+    let angle = 360 / sides
+    move_to(x + radius, y)
+    set_pen_color(color)
+    _pen.begin_fill()
+    _pen.fillcolor(color)
+    for i in 1 to sides:
+        _pen.left(angle)
+        _pen.forward(radius * 2 * 3.14159 / sides)
+    endfor
+    _pen.end_fill()
+endfunc
+
+# 绘制多个多边形
+for i in 3 to 10:
+    let radius = 30 + i * 10
+    let color = random_color()
+    draw_polygon(0, 0, i, radius, color)
+    delay(0.5)
+endfor
+
+# 显示完成信息
+draw_text(0, -250, "测试完成!", 20, "red")
+draw_text(0, -280, "按窗口关闭按钮退出", 12, "gray")
+
+println("测试完成，按窗口关闭按钮退出...")
+
+# 开始事件循环
+start_event_loop()
+
+# 关闭图形系统
+close_graphics()
+
+println("图形系统已关闭")
+
+end

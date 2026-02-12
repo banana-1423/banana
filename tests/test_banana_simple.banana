@@ -1,0 +1,55 @@
+banana
+# 测试基本变量定义和打印
+let name = "Banana Language"
+println("欢迎使用 " + name)
+
+# 测试算术运算
+let a = 10
+let b = 5
+println("a = " + str(a))
+println("b = " + str(b))
+println("a + b = " + str(a + b))
+println("a - b = " + str(a - b))
+println("a * b = " + str(a * b))
+println("a / b = " + str(a / b))
+println("a % b = " + str(a % b))
+
+# 测试条件语句
+if a > b
+    println("a 大于 b")
+else
+    println("a 小于或等于 b")
+endif
+
+# 测试while循环
+let count = 0
+while count < 5
+    println("循环次数: " + str(count))
+    set count = count + 1
+endwhile
+
+# 测试for循环
+let numbers = list(1, 2, 3, 4, 5)
+for i in numbers
+    println("计数循环: " + str(i))
+endfor
+
+# 测试函数定义和调用
+func add(x, y)
+    return x + y
+endfunc
+
+let result = add(a, b)
+println("add(a, b) = " + str(result))
+
+# 测试内置函数
+let random_num = rand()
+println("随机数: " + str(random_num))
+
+let my_list = list(1, 2, 3, 4, 5)
+println("列表长度: " + str(len(my_list)))
+println("列表最大值: " + str(max(my_list)))
+println("列表最小值: " + str(min(my_list)))
+println("列表总和: " + str(sum(my_list)))
+
+end

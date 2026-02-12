@@ -1,0 +1,23 @@
+banana
+# 计算平均数的程序
+
+func calculate_average(numbers)
+    let total = sum(numbers)
+    let count = len(numbers)
+    if count > 0
+        return total / count
+    else
+        return 0
+    endif
+endfunc
+
+# 测试数据
+let scores = list(85, 92, 78, 90, 88)
+println("学生成绩: " + str(scores))
+
+# 计算并打印结果
+let avg = calculate_average(scores)
+println("平均成绩: " + str(avg))
+println("最高成绩: " + str(max(scores)))
+println("最低成绩: " + str(min(scores)))
+end

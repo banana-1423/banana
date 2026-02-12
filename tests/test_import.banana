@@ -1,0 +1,11 @@
+banana
+
+# 测试import语句
+import test_module
+
+# 测试模块中的变量和函数
+println("Testing module import...")
+println(test_var)
+test_func()
+
+end
